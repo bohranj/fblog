@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use dosamigos\ckeditor\CKEditor;
+//use dosamigos\ckeditor\CKEditor;
+use bajadev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Articles */
@@ -15,11 +16,15 @@ use dosamigos\ckeditor\CKEditor;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-
     <?= $form->field($model, 'body')->widget(CKEditor::className(), [
-        'options' => ['rows' => 6],
-        'preset' => 'basic'
-    ]) ?>
+    'editorOptions' => [
+        'preset' => 'full', /* basic, standard, full*/
+        'inline' => false,
+        'filebrowserBrowseUrl' => '../files',
+        'filebrowserUploadUrl' => '../files',
+        'extraPlugins' => 'imageuploader',
+    ],
+]); ?>
 
     <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
 

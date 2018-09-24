@@ -11,6 +11,30 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 class ArticlesController extends Controller {
+
+    public function actions() {
+        return [
+            'browse-images' => [
+                'class' => 'bajadev\ckeditor\actions\BrowseAction',
+                'quality' => 80,
+                'maxWidth' => 800,
+                'maxHeight' => 800,
+                'useHash' => true,
+                'url' => '@www/files/',
+                'path' => '@www/files/',
+            ],
+            'upload-images' => [
+                'class' => 'bajadev\ckeditor\actions\UploadAction',
+                'quality' => 80,
+                'maxWidth' => 800,
+                'maxHeight' => 800,
+                'useHash' => true,
+                'url' => '@www/files/',
+                'path' => '@www/files/',
+            ],
+        ];
+    }
+
     public function behaviors() {
         return [
             'verbs' => [
@@ -91,4 +115,5 @@ class ArticlesController extends Controller {
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }
