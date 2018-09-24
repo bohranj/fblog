@@ -37,7 +37,6 @@ return [
             'errorAction' => 'site/error',
         ],
         'urlManager' => [
-            'baseUrl' => '/yiiadv/www',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [

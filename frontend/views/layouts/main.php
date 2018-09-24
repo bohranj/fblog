@@ -35,67 +35,51 @@ AppAsset::register($this);
                     <h1>free fashion blog template</h1>
                     <ul class="top-ul right">
                        <li>
-                          <a href="/fblog/www">Blog</a>
+                          <a href="<?php echo Yii::$app->urlManager->createUrl('/') ?>">Blog</a>
                        </li>
                        <li>
                           <a href="<?php echo Yii::$app->urlManager->createUrl('/site/about') ?>">About</a>
                        </li>
                        <li>
-                          <a href="archive.html">Archive</a>
+                          <a href="<?php echo Yii::$app->urlManager->createUrl('/site/archive') ?>">Archive</a>
                        </li>
                        <li>
-                          <a href="contact.html">Contact</a>
+                          <a href="<?php echo Yii::$app->urlManager->createUrl('/site/contact') ?>">Contact</a>
                        </li>
-                       <div class="social right">
+                       <!-- <div class="social right">
                           <a target="_blank" href="https://www.facebook.com/myresponsee">
                           <i class="icon-facebook_circle icon2x"></i>
                           </a>
                           <a target="_blank" href="https://twitter.com/MyResponsee">
                           <i class="icon-twitter_circle icon2x"></i>
                           </a>
-                       </div>
+                       </div> -->
                     </ul>
-                    <?php
-                    // NavBar::begin([
-                    //     'brandLabel' => Yii::$app->name,
-                    //     'brandUrl' => Yii::$app->homeUrl,
-                    //     'options' => [
-                    //         'class' => 'navbar-inverse navbar-fixed-top',
-                    //     ],
-                    // ]);
-                    // $menuItems = [
-                    //     ['label' => 'Home', 'url' => ['/site/index']],
-                    //     ['label' => 'About', 'url' => ['/site/about']],
-                    //     ['label' => 'Contact', 'url' => ['/site/contact']],
-                    // ];
-                    // echo Nav::widget([
-                    //     'options' => ['class' => 'navbar-nav navbar-right'],
-                    //     'items' => $menuItems,
-                    // ]);
-                    // NavBar::end();
-                    ?>
-
                 </div>
             </nav>
         </div>
     </header>
 
         <div class="container">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
             <?= Alert::widget() ?>
             <?= $content ?>
         </div>
 
-
-    <footer class="footer">
-        <div class="container">
-            <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-
-            <p class="pull-right"><?= Yii::powered() ?></p>
-        </div>
-    </footer>
+    <div class="line">
+       <footer>
+          <div class="s-12 l-8">
+             <p>
+                Copyright 2015, Vision Design - graphic zoo<br>
+                All images is purchased from Bigstock. Do not use the image in your website.
+             </p>
+          </div>
+          <div class="s-12 l-4">
+             <a class="right" href="http://www.myresponsee.com" title="Responsive framework">Design and coding<br>
+             by Responsee Team
+             </a>
+          </div>
+       </footer>
+    </div>
 
     <?php $this->endBody() ?>
 </body>
