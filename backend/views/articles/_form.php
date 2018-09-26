@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-//use dosamigos\ckeditor\CKEditor;
 use bajadev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
@@ -17,14 +16,14 @@ use bajadev\ckeditor\CKEditor;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'body')->widget(CKEditor::className(), [
-    'editorOptions' => [
-        'preset' => 'full', /* basic, standard, full*/
-        'inline' => false,
-        'filebrowserBrowseUrl' => '../files',
-        'filebrowserUploadUrl' => '../files',
-        'extraPlugins' => 'imageuploader',
-    ],
-]); ?>
+        'editorOptions' => [
+            'preset' => 'full', /* basic, standard, full*/
+            'inline' => false,
+            'filebrowserBrowseUrl' => 'browse-images',
+            'filebrowserUploadUrl' => 'upload-images',
+            'extraPlugins' => 'imageuploader',
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
 
@@ -33,6 +32,8 @@ use bajadev\ckeditor\CKEditor;
     <?= $form->field($model, 'status')->textInput() ?>
 
     <?= $form->field($model, 'views')->textInput() ?>
+
+    <?= $form->field($model, 'home')->textInput() ?>
 
     <?= $form->field($model, 'category_id')->textInput() ?>
 

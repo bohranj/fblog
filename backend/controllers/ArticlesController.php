@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 class ArticlesController extends Controller {
-
+    
     public function actions() {
         return [
             'browse-images' => [
@@ -20,8 +20,8 @@ class ArticlesController extends Controller {
                 'maxWidth' => 800,
                 'maxHeight' => 800,
                 'useHash' => true,
-                'url' => '@www/files/',
-                'path' => '@www/files/',
+                'url' => '@web/../public/files/',
+                'path' => '@www/public/files/',
             ],
             'upload-images' => [
                 'class' => 'bajadev\ckeditor\actions\UploadAction',
@@ -29,8 +29,8 @@ class ArticlesController extends Controller {
                 'maxWidth' => 800,
                 'maxHeight' => 800,
                 'useHash' => true,
-                'url' => '@www/files/',
-                'path' => '@www/files/',
+                'url' => '@web/../public/files/',
+                'path' => '@www/public/files/',
             ],
         ];
     }

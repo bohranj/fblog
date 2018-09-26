@@ -21,12 +21,12 @@
         "2amigos/yii2-ckeditor-widget": "^2.1",
         "mihaildev/yii2-ckeditor": "*",
         "mihaildev/yii2-elfinder": "*",
-        "bajadev/yii2-ckeditor": "*"
+        "bajadev/yii2-ckeditor": "*",
+        "yiisoft/yii2-faker": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
         "yiisoft/yii2-gii": "~2.0.0",
-        "yiisoft/yii2-faker": "~2.0.0",
         "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1"
     },

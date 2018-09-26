@@ -19,8 +19,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Articles', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php echo @frontend; ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -32,10 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'body:ntext',
             'alias',
             'published_date',
-            //'status',
-            //'views',
-            //'category_id',
-
+            'status',
+            'home',
+            'category_id',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

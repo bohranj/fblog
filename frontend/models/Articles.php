@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -37,7 +37,7 @@ class Articles extends \yii\db\ActiveRecord
             [['title', 'body', 'alias', 'status', 'views', 'category_id'], 'required'],
             [['body'], 'string'],
             [['published_date'], 'safe'],
-            [['status', 'views', 'home', 'category_id'], 'integer'],
+            [['status', 'home','views', 'category_id'], 'integer'],
             [['title', 'alias'], 'string', 'max' => 250],
             [['alias'], 'unique'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -57,8 +57,8 @@ class Articles extends \yii\db\ActiveRecord
             'alias' => 'Alias',
             'published_date' => 'Published Date',
             'status' => 'Status',
-            'views' => 'Views',
             'home' => 'Home',
+            'views' => 'Views',
             'category_id' => 'Category ID',
         ];
     }

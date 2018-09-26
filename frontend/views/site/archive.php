@@ -11,6 +11,7 @@ $this->title = 'Archive';
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- MAIN SECTION -->
+<?php echo Yii::getAlias('@web'); ?>
 <section id="article-section" class="line archive">
    <div class="margin">
       <!-- ARTICLES -->

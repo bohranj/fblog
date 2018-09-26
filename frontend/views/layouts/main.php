@@ -22,14 +22,12 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body class="size-1140">
-    <?php $this->beginBody() ?>
-
     <header class="margin-bottom">
         <div class="line">
             <nav>
                 <div class="top-nav">
                     <p class="nav-text"></p>
-                    <a class="logo" href="index.html">
+                    <a class="logo" href="<?php echo Yii::$app->urlManager->createUrl('/') ?>">
                     Fashion<span>Blog</span>
                     </a>
                     <h1>free fashion blog template</h1>
