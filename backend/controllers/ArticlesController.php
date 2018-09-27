@@ -5,13 +5,14 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Articles;
 use backend\models\ArticlesSearch;
+use yii\web\UploadedFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 class ArticlesController extends Controller {
-    
+
     public function actions() {
         return [
             'browse-images' => [

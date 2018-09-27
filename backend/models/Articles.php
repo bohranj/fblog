@@ -4,38 +4,18 @@ namespace backend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "articles".
- *
- * @property int $id
- * @property string $title
- * @property string $body
- * @property string $alias
- * @property string $published_date
- * @property int $status
- * @property int $views
- * @property int $category_id
- *
- * @property Categories $category
- */
-class Articles extends \yii\db\ActiveRecord
-{
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
+class Articles extends \yii\db\ActiveRecord {
+
+    public $fileImage;
+
+    public static function tableName() {
         return 'articles';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['title', 'body', 'alias', 'status', 'views', 'category_id'], 'required'],
-            [['body'], 'string'],
+            [['body', 'imageurl'], 'string'],
             [['published_date'], 'safe'],
             [['status', 'views', 'home', 'category_id'], 'integer'],
             [['title', 'alias'], 'string', 'max' => 250],
@@ -44,12 +24,7 @@ class Articles extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'title' => 'Title',
@@ -60,14 +35,11 @@ class Articles extends \yii\db\ActiveRecord
             'views' => 'Views',
             'home' => 'Home',
             'category_id' => 'Category ID',
+            'imageurl' => 'Image',
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->hasOne(Categories::className(), ['id' => 'category_id']);
     }
 }

@@ -6,81 +6,59 @@ use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use backend\models\Articles;
+use backend\models\Categories;
 
-/**
- * Site controller
- */
-class SiteController extends Controller
-{
+class SiteController extends Controller {
 
-
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return mixed
-     */
     public function actionIndex() {
         $query = Articles::find()->where('home = 1');
         $items = $query->limit(4)->all();
 
-        return $this->render('index', ['items' => $items]);
+        return $this->render('index', ['items' => $items, 'cat' => '']);
     }
 
-    /**
-     * Logs in a user.
-     *
-     * @return mixed
-     */
-    public function actionLogin() {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            $model->password = '';
-
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Logs out the current user.
-     *
-     * @return mixed
-     */
-    public function actionLogout()
+    public function actionArticle($alias)
     {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
+        $this->render('view',array(
+            'model'=>$this->loadModelSlug($alias),
+        ));
     }
 
-    // /**
-    //  * Displays contact page.
-    //  *
-    //  * @return mixed
-    //  */
+    public function loadModelSlug($slug)
+    {
+        $model = Articles::model()->findByAttributes(array('alias'=>$alias));
+        if($model===null)
+            throw new CHttpException(404,'The requested page does not exist.');
+        return $model;
+    }
+
+    // public function actionArticle($alias) {
+    //     if ($alias !== '') {
+    //         $query = Articles::find()->where('alias = ' . $alias);
+    //         $article = $query->one();
+    //     } else {
+    //         return $this->actionIndex();
+    //     }
+    //
+    //     return $this->render('article',['article' => $article]);
+    // }
+
+    public function actionAbout() {
+        return $this->render('about');
+    }
+
+    public function actionArchive() {
+        return $this->render('archive');
+    }
+
     // public function actionContact()
     // {
     //     $model = new ContactForm();
@@ -99,72 +77,4 @@ class SiteController extends Controller
     //     }
     // }
 
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
-
-    /**
-     * Signs user up.
-     *
-     * @return mixed
-     */
-    public function actionArchive()
-    {
-        return $this->render('archive');
-    }
-
-    /**
-     * Requests password reset.
-     *
-     * @return mixed
-     */
-    public function actionRequestPasswordReset()
-    {
-        $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
-            }
-        }
-
-        return $this->render('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Resets password.
-     *
-     * @param string $token
-     * @return mixed
-     * @throws BadRequestHttpException
-     */
-    public function actionResetPassword($token)
-    {
-        try {
-            $model = new ResetPasswordForm($token);
-        } catch (InvalidParamException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password saved.');
-
-            return $this->goHome();
-        }
-
-        return $this->render('resetPassword', [
-            'model' => $model,
-        ]);
-    }
 }

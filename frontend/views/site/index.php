@@ -1,7 +1,5 @@
 <?php
 
-/* @var $this yii\web\View */
-
 $this->title = 'Fblog';
 ?>
 <!-- MAIN SECTION -->
@@ -10,14 +8,12 @@ $this->title = 'Fblog';
       <!-- ARTICLES -->
       <div class="s-12 l-9">
 
-         <!-- ARTICLE 1 -->
-
          <?php foreach ($items as $key => $value): ?>
              <article class="post-<?php echo $key+1; ?> line <?php if(($key+1)%2 == 0) { echo ' right-align'; }  ?> ">
                 <!-- image -->
                 <div class="s-12 l-6 post-image">
-                   <a href="post-1.html">
-                       <img src="img/post1.jpg" alt="Fashion 1">
+                   <a href="<?= Yii::$app->urlManager->createUrl('site/article/'. $value['alias'] .''); ?>">
+                       <img src="<?= $value['imageurl']; ?>" alt="<?= $value['title']; ?>">
                    </a>
                 </div>
                 <!-- text -->
@@ -25,18 +21,17 @@ $this->title = 'Fblog';
                    <a href="post-1.html">
                       <h2><?= $value['title']; ?></h2>
                    </a>
-                   <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat wisi enim.
+                   <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit
                    </p>
                 </div>
                 <!-- date -->
                 <div class="s-12 l-1 post-date">
-                   <p class="date">07</p>
-                   <p class="month">mar</p>
+                   <p class="date"><?= date('d',strtotime($value['published_date'])); ?></p>
+                   <p class="month"><?= DateTime::createFromFormat('!m', date('m',strtotime($value['published_date'])))->format('M'); ?></p>
                 </div>
              </article>
          <?php endforeach; ?>
 
-         <!-- ARTICLE 5 -->
          <article class="post-5 line">
             <!-- text -->
             <div class="s-12 l-11 post-text">

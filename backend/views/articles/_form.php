@@ -3,10 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use bajadev\ckeditor\CKEditor;
+use backend\models\Categories;
 
-/* @var $this yii\web\View */
-/* @var $model backend\models\Articles */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="articles-form">
@@ -17,7 +15,7 @@ use bajadev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'body')->widget(CKEditor::className(), [
         'editorOptions' => [
-            'preset' => 'full', /* basic, standard, full*/
+            'preset' => 'basic', /* basic, standard, full*/
             'inline' => false,
             'filebrowserBrowseUrl' => 'browse-images',
             'filebrowserUploadUrl' => 'upload-images',
@@ -27,6 +25,14 @@ use bajadev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'imageurl')->textInput(); ?>
+
+    <?= $form->field($model, 'category_id')->dropDownList(Categories::find()
+        ->select(['title'])
+        ->indexBy('id')
+        ->column()
+    ); ?>
+
     <?= $form->field($model, 'published_date')->textInput() ?>
 
     <?= $form->field($model, 'status')->textInput() ?>
@@ -34,8 +40,6 @@ use bajadev\ckeditor\CKEditor;
     <?= $form->field($model, 'views')->textInput() ?>
 
     <?= $form->field($model, 'home')->textInput() ?>
-
-    <?= $form->field($model, 'category_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
