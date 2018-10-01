@@ -12,17 +12,16 @@ $this->title = 'Fblog';
              <article class="post-<?php echo $key+1; ?> line <?php if(($key+1)%2 == 0) { echo ' right-align'; }  ?> ">
                 <!-- image -->
                 <div class="s-12 l-6 post-image">
-                   <a href="<?= Yii::$app->urlManager->createUrl('site/article/'. $value['alias'] .''); ?>">
+                   <a href="<?= Yii::$app->urlManager->createUrl('site/article?alias='. $value['alias']); ?>">
                        <img src="<?= $value['imageurl']; ?>" alt="<?= $value['title']; ?>">
                    </a>
                 </div>
                 <!-- text -->
                 <div class="s-12 l-5 post-text">
-                   <a href="post-1.html">
+                   <a href="<?= Yii::$app->urlManager->createUrl('site/article?alias='. $value['alias']); ?>">
                       <h2><?= $value['title']; ?></h2>
                    </a>
-                   <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit
-                   </p>
+                   <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit</p>
                 </div>
                 <!-- date -->
                 <div class="s-12 l-1 post-date">
@@ -52,22 +51,20 @@ $this->title = 'Fblog';
       <!-- SIDEBAR -->
       <div class="s-12 l-3">
          <aside>
-            <!-- NEWS 1 -->
-            <img src="img/news1.jpg" alt="News 1">
-            <div class="aside-block margin-bottom">
-               <h3>This is the first news on blog</h3>
-               <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
-            </div>
-            <!-- NEWS 2 -->
-            <img src="img/news2.jpg" alt="News 2">
-            <div class="aside-block margin-bottom">
-               <h3>Second news on the fashion blog</h3>
-               <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
-            </div>
+             <?php foreach ($sidebar_items as $key => $value) { ?>
+                 <img src="<?= $value['imageurl']; ?>" alt="<?= $value['title']; ?>">
+                 <div class="aside-block margin-bottom">
+                    <a href="<?= Yii::$app->urlManager->createUrl('site/article?alias='. $value['alias']); ?>">
+                        <h3><?= $value['title'] ?></h3>
+                    </a>
+                    <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
+                 </div>
+             <?php } ?>
+
             <!-- AD REGION -->
-            <div class="advertising margin-bottom">
+            <!-- <div class="advertising margin-bottom">
                <img src="img/banner.jpg" alt="ad banner">
-            </div>
+            </div> -->
          </aside>
       </div>
    </div>

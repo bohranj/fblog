@@ -13,29 +13,6 @@ use yii\filters\AccessControl;
 
 class ArticlesController extends Controller {
 
-    public function actions() {
-        return [
-            'browse-images' => [
-                'class' => 'bajadev\ckeditor\actions\BrowseAction',
-                'quality' => 80,
-                'maxWidth' => 800,
-                'maxHeight' => 800,
-                'useHash' => true,
-                'url' => '@web/../public/files/',
-                'path' => '@www/public/files/',
-            ],
-            'upload-images' => [
-                'class' => 'bajadev\ckeditor\actions\UploadAction',
-                'quality' => 80,
-                'maxWidth' => 800,
-                'maxHeight' => 800,
-                'useHash' => true,
-                'url' => '@web/../public/files/',
-                'path' => '@www/public/files/',
-            ],
-        ];
-    }
-
     public function behaviors() {
         return [
             'verbs' => [

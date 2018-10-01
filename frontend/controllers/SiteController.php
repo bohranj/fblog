@@ -7,6 +7,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use backend\models\Articles;
 use backend\models\Categories;
+use yii\data\Pagination;
 
 class SiteController extends Controller {
 
@@ -19,62 +20,49 @@ class SiteController extends Controller {
     }
 
     public function actionIndex() {
-        $query = Articles::find()->where('home = 1');
+        $query = Articles::find()->where('home = 1 and status = 1');
         $items = $query->limit(4)->all();
 
-        return $this->render('index', ['items' => $items, 'cat' => '']);
+        $sidebar_items = Articles::find()->where('home != 1 and status = 1')->orderBy('published_date')->limit(2)->all();
+
+        return $this->render('index', ['items' => $items, 'sidebar_items' => $sidebar_items ]);
     }
 
-    public function actionArticle($alias)
-    {
-        $this->render('view',array(
-            'model'=>$this->loadModelSlug($alias),
-        ));
-    }
+    public function actionArticle($alias = '') {
 
-    public function loadModelSlug($slug)
-    {
-        $model = Articles::model()->findByAttributes(array('alias'=>$alias));
-        if($model===null)
-            throw new CHttpException(404,'The requested page does not exist.');
-        return $model;
-    }
+        $alias = Yii::$app->request->get('alias');
 
-    // public function actionArticle($alias) {
-    //     if ($alias !== '') {
-    //         $query = Articles::find()->where('alias = ' . $alias);
-    //         $article = $query->one();
-    //     } else {
-    //         return $this->actionIndex();
-    //     }
-    //
-    //     return $this->render('article',['article' => $article]);
-    // }
+        if ($alias !== '') {
+            $query = Articles::find()->where("alias = '" . $alias . "'");
+            $article = $query->one();
+            if(!$article) {
+                return $this->actionIndex();
+            }
+        } else {
+            return $this->actionIndex();
+        }
+
+        return $this->render('article',['article' => $article]);
+    }
 
     public function actionAbout() {
         return $this->render('about');
     }
 
-    public function actionArchive() {
-        return $this->render('archive');
-    }
+    public function actionHealthy() {
 
-    // public function actionContact()
-    // {
-    //     $model = new ContactForm();
-    //     if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-    //         if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-    //             Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-    //         } else {
-    //             Yii::$app->session->setFlash('error', 'There was an error sending your message.');
-    //         }
-    //
-    //         return $this->refresh();
-    //     } else {
-    //         return $this->render('contact', [
-    //             'model' => $model,
-    //         ]);
-    //     }
-    // }
+        $query = Articles::find()->where('category_id = 1 and status = 1');
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+        $items = $query->offset($pages->offset)->limit($pages->limit)->all();
+
+        $sidebar_items = Articles::find()->where('category_id != 1 and status = 1')->orderBy('published_date')->limit(2)->all();
+
+        return $this->render('healthy', [
+            'items' => $items,
+            'pages' => $pages,
+            'sidebar_items' => $sidebar_items
+        ]);
+    }
 
 }

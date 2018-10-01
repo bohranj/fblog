@@ -33,16 +33,16 @@ AppAsset::register($this);
                     <h1>free fashion blog template</h1>
                     <ul class="top-ul right">
                        <li>
-                          <a href="<?php echo Yii::$app->urlManager->createUrl('/') ?>">Blog</a>
+                          <a href="<?php echo Yii::$app->urlManager->createUrl('/') ?>">Ana Səhifə</a>
                        </li>
                        <li>
-                          <a href="<?php echo Yii::$app->urlManager->createUrl('/site/about') ?>">About</a>
+                          <a href="<?php echo Yii::$app->urlManager->createUrl('/site/healthy') ?>">Sağlamlıq</a>
                        </li>
                        <li>
-                          <a href="<?php echo Yii::$app->urlManager->createUrl('/site/archive') ?>">Archive</a>
+                          <a href="<?php echo Yii::$app->urlManager->createUrl('/site/beauty') ?>">Gözəllik</a>
                        </li>
                        <li>
-                          <a href="<?php echo Yii::$app->urlManager->createUrl('/site/contact') ?>">Contact</a>
+                          <a href="<?php echo Yii::$app->urlManager->createUrl('/site/style') ?>">Tərz</a>
                        </li>
                        <!-- <div class="social right">
                           <a target="_blank" href="https://www.facebook.com/myresponsee">

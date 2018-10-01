@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use bajadev\ckeditor\CKEditor;
+use nickdenry\ckeditorRoxyFileman\RoxyFileManager;
 use backend\models\Categories;
 
 ?>
@@ -14,14 +15,12 @@ use backend\models\Categories;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'body')->widget(CKEditor::className(), [
-        'editorOptions' => [
+        'editorOptions' => RoxyFileManager::attach([
             'preset' => 'basic', /* basic, standard, full*/
             'inline' => false,
-            'filebrowserBrowseUrl' => 'browse-images',
-            'filebrowserUploadUrl' => 'upload-images',
-            'extraPlugins' => 'imageuploader',
-        ],
+        ]),
     ]); ?>
+
 
     <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
 

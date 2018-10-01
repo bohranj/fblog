@@ -11,7 +11,13 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'ckeditorRoxyFileman' => [
+            'class' => 'nickdenry\ckeditorRoxyFileman\Module',
+            'uploadFolder' => '@www/files/images',
+            'uploadUrl' => '/fblog/www/files/images',
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
