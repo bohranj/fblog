@@ -14,6 +14,8 @@ use backend\models\Categories;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'subtitle')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'body')->widget(CKEditor::className(), [
         'editorOptions' => RoxyFileManager::attach([
             'preset' => 'basic', /* basic, standard, full*/

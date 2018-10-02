@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Article';
+$this->title = $one_article['title'];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -43,48 +43,32 @@ $this->params['breadcrumbs'][] = $this->title;
       <div class="s-12 l-3">
          <aside>
             <!-- NEWS 1 -->
-            <img src="img/news1.jpg" alt="News 1">
+            <img src="<?= $one_article['imageurl']; ?>" alt="<?= $one_article['title']; ?>">
             <div class="aside-block margin-bottom">
-               <h3>This is the first news on blog</h3>
-               <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
+                <a href="<?= Yii::$app->urlManager->createUrl('site/article?alias='. $one_article['alias']); ?>">
+                    <h3><?= $one_article['title'] ?></h3>
+                </a>
+                <p><?= $one_article['subtitle'] ?></p>
             </div>
             <!-- AD REGION -->
-            <div class="advertising margin-bottom">
+            <!-- <div class="advertising margin-bottom">
                <img src="img/banner.jpg" alt="ad banner">
-            </div>
+            </div> -->
             <!-- LATEST POSTS -->
             <div class="aside-block margin-bottom">
-               <h3>Latest posts</h3>
-               <a class="latest-posts" href="post-1.html">
-                  <h5>Free responsive template</h5>
-                  <p>
-                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-                  </p>
-               </a>
-               <a class="latest-posts" href="post-2.html">
-                  <h5>Amazing fashion blog</h5>
-                  <p>
-                     Ut wisi enim ad minim veniam, quis nostrud adipiscing...
-                  </p>
-               </a>
-               <a class="latest-posts" href="post-3.html">
-                  <h5>Nice minimalist design</h5>
-                  <p>
-                     Duis autem vemeu iriure dolor adipiscing elit, sed diam...
-                  </p>
-               </a>
-               <a class="latest-posts" href="post-4.html">
-                  <h5>With advertising regions</h5>
-                  <p>
-                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-                  </p>
-               </a>
-               <a class="latest-posts" href="post-5.html">
-                  <h5>And again - it's totally free!</h5>
-                  <p>
-                     Ut wisi enim ad minim veniam, quis nostrud adipiscing...
-                  </p>
-               </a>
+               <!-- <h3>Sonuncu xəbərlər</h3> -->
+               <?php foreach ($sidebar_items as $value) { ?>
+                   <a class="latest-posts" href="<?= Yii::$app->urlManager->createUrl('site/article?alias='. $value['alias']); ?>">
+                      <h5><?= $value['title'] ?></h5>
+                      <p>
+                         <?php if(strlen($value['subtitle']) >= 60) {
+                              echo substr($value['subtitle'], 0, 60).' ...';
+                          } else {
+                              echo substr($value['subtitle'], 0, 60);
+                          } ?>
+                      </p>
+                   </a>
+               <?php } ?>
             </div>
          </aside>
       </div>

@@ -51,11 +51,31 @@ $this->params['breadcrumbs'][] = $this->title;
                   id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem.
                </p>
             </div>
+            <div class="post-text">
+               <h1>Contact Me</h1>
+               <div class="line">
+                  <div class="margin">
+                     <div class="s-12 l-6">
+                        <address>
+                           <p><i class="icon-home icon"></i> Bakı, Azərbaycan </p>
+                           <p><i class="icon-mail icon"></i> info@fblog.az</p>
+                        </address>
+                        <br />
+                        <!-- <h4>Social</h4>
+                        <p><i class="icon-facebook icon"></i> <a href="https://www.facebook.com/pages/Vision-Design-graphic-ZOO/154664684553091">Vision Design - graphic zoo</a></p>
+                        <p><i class="icon-facebook icon"></i> <a href="https://www.facebook.com/myresponsee">Responsee</a></p>
+                        <p class="margin-bottom"><i class="icon-twitter icon"></i> <a href="https://twitter.com/MyResponsee">Responsee</a></p> -->
+                     </div>
+
+                  </div>
+               </div>
+            </div>
          </article>
+
          <!-- AD REGION -->
          <div class="line">
             <div class="advertising horizontal">
-               <img src="img/banner-horizontal.jpg" alt="ad banner">
+               <!-- <img src="img/banner-horizontal.jpg" alt="ad banner"> -->
             </div>
          </div>
       </div>

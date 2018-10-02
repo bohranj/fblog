@@ -143,7 +143,7 @@ aside img {
 }
 aside h3 {
 	color: #0b192f;
-	font-size: 2em;
+	font-size: 1.5em;
 	font-weight: 300;
 	line-height: 1em;
 	margin: 0 0 0.625em;
@@ -277,6 +277,25 @@ address i.icon {
 address p {
 	line-height: 2.5em;
 }
+.pagination  li {
+	display: inline;
+}
+.pagination li a{
+	display: inline;
+	margin: 3px;
+	background: #fff;
+	padding: 5px;
+	border-radius: 3px;
+}
+
+.pagination li.disabled {
+	display: none;
+}
+.pagination li.active a {
+	background: #162b4d;
+	color: #fff;
+}
+
 @media screen and (max-width: 800px) {
   a.logo {
   	display: block;
@@ -319,6 +338,9 @@ address p {
   }
   .right-align .post-date {
   	text-align: center;
+  }
+  .pagination {
+	  margin: 20px 0;
   }
   footer a.right {
   	float: none;

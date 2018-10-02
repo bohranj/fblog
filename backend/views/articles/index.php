@@ -27,7 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'body:ntext',
             'alias',
             'published_date',
             'status',

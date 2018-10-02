@@ -5,7 +5,7 @@ use yii\bootstrap\ActiveForm;
 use yii\widgets\LinkPager;
 
 
-$this->title = 'Archive';
+$this->title = $category_name->title;
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- MAIN SECTION -->
@@ -35,8 +35,7 @@ $this->title = 'Archive';
                        <h2><?= $value['title']; ?></h2>
                     </a>
                     <p>
-                       Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
-                       ex ea commodo consequat...
+                        <?= $value['subtitle'] ?>
                     </p>
                     <a class="continue-reading" href="<?= Yii::$app->urlManager->createUrl('site/article?alias='. $value['alias']); ?>">Ətraflı bax</a>
                  </div>
@@ -61,7 +60,9 @@ $this->title = 'Archive';
                     <a href="<?= Yii::$app->urlManager->createUrl('site/article?alias='. $value['alias']); ?>">
                         <h3><?= $value['title'] ?></h3>
                     </a>
-                    <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
+                    <p>
+                        <?= $value['subtitle'] ?>
+                    </p>
                  </div>
              <?php } ?>
 

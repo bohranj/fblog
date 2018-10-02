@@ -18,7 +18,7 @@ class Articles extends \yii\db\ActiveRecord {
             [['body', 'imageurl'], 'string'],
             [['published_date'], 'safe'],
             [['status', 'views', 'home', 'category_id'], 'integer'],
-            [['title', 'alias'], 'string', 'max' => 250],
+            [['title', 'alias', 'subtitle'], 'string', 'max' => 250],
             [['alias'], 'unique'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
@@ -28,6 +28,7 @@ class Articles extends \yii\db\ActiveRecord {
         return [
             'id' => 'ID',
             'title' => 'Title',
+            'subtitle' => 'SubTitle',
             'body' => 'Body',
             'alias' => 'Alias',
             'published_date' => 'Published Date',
