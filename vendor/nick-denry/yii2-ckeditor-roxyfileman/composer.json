@@ -1,0 +1,46 @@
+{
+    "name": "nick-denry/yii2-ckeditor-roxyfileman",
+    "description": "Yii2 integration of Roxy File Manager to CKEditor",
+    "keywords": [
+        "yii2",
+        "ckeditor",
+        "file manager",
+        "roxy"
+    ],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "homepage": "https://github.com/nick-denry/yii2-ckeditor-roxyfileman",
+    "support": {
+        "issues": "https://github.com/nick-denry/yii2-ckeditor-roxyfileman/issues",
+        "source": "https://github.com/nick-denry/yii2-ckeditor-roxyfileman"
+    },
+    "authors": [
+        {
+            "name": "Nick Denry",
+            "email": "nick.denry@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "^2.0",
+        "php": ">=5.6",
+        "ext-gd": "*",
+        "ext-mbstring": "*",
+        "ext-zip": "*",
+        "navatech/yii2-navatech-base": "1.0.0.2",
+        "bower-asset/fontawesome": "^4.6",
+        "bower-asset/patternfly-bootstrap-treeview": "~2.1",
+        "bower-asset/jquery.lazyload": "~1.9",
+        "bower-asset/fancybox": "~2.1"
+    },
+    "conflict": {
+        "skeeks/yii2-assets-auto-compress": "1.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "nickdenry\\ckeditorRoxyFileman\\": "src"
+        }
+    },
+    "extra": {
+        "bootstrap": "nickdenry\\ckeditorRoxyFileman\\Bootstrap"
+    }
+}
