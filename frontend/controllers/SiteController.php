@@ -55,6 +55,7 @@ class SiteController extends Controller {
     }
 
     public function queriesHelper($id = '1') {
+
         $query = Articles::find()->where('category_id = "' . $id .'" and status = 1');
 
         $countQuery = clone $query;
@@ -111,6 +112,26 @@ class SiteController extends Controller {
             'sidebar_items' => $arr['sidebar_items'],
             'category_name' => $arr['category_name']
         ]);
+    }
+
+    public function actionSearch($s = '') {
+        $s = Yii::$app->request->get('s');
+
+        if(isset($s) && $s !== '') {
+            if(strlen($s) > 3) {
+                $query = Articles::find()->where(['like', 'title', $s])->limit(20)->all();
+                if(count($query) > 0) {
+                    return $this->render('search', ['result' => 'Nəticə tapılmadı']);
+                } else {
+                    return $this->render('search', ['result' => $query]);
+                }
+            }
+            else {
+                return $this->render('search', ['result' => 'Axtarılacaq sözün uzunluğu 3 xarakterdən çox olmalıdır']);
+            }
+        } else {
+            return $this->actionIndex();
+        }
     }
 
 }
